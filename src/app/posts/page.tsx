@@ -1,7 +1,7 @@
 import { PostsWrapper } from '@/app/_components/posts/PostsWrapper';
 import { auth } from '@/server/auth';
 import { HydrateClient } from '@/trpc/server';
-import { IUser } from '@/interfaces/interfaces';
+import type { IUser } from '@/interfaces/interfaces';
 
 const Page = async () => {
 	const session = await auth();
