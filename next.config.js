@@ -9,6 +9,7 @@ const config = {
 	compiler: {
 		styledComponents: true,
 	},
+	output: 'standalone',
 };
 
 export default config;
