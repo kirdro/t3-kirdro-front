@@ -10,9 +10,12 @@ import {
 	NavbarBrand,
 	NavbarContent,
 	NavbarItem,
+	NavbarMenu,
+	NavbarMenuItem,
+	NavbarMenuToggle,
 } from '@nextui-org/react';
 import Link from 'next/link';
-import type { FC } from 'react';
+import { FC, useState } from 'react';
 import type { ISession } from '@/interfaces/interfaces';
 import { usePathname } from 'next/navigation';
 
@@ -34,15 +37,21 @@ const arrayPaths: { name: string; path: string }[] = [
 export const Nav: FC<{ session: ISession | null }> = (props) => {
 	const { session } = props;
 	const pathname = usePathname();
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
 		<Navbar
 		// className={'bg-black text-blue-300'}
 		>
-			<NavbarBrand>
-				{/*<AcmeLogo />*/}
-				<p className='font-bold text-inherit'>kirdro</p>
-			</NavbarBrand>
+			<NavbarContent>
+				<NavbarMenuToggle
+					aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+					className='sm:hidden'
+				/>
+				<NavbarBrand>
+					<p className='font-bold text-inherit'>Kirdro</p>
+				</NavbarBrand>
+			</NavbarContent>
 			<NavbarContent className='hidden gap-4 sm:flex' justify='center'>
 				{arrayPaths.map((item, i) => {
 					return (
@@ -125,6 +134,25 @@ export const Nav: FC<{ session: ISession | null }> = (props) => {
 					</NavbarItem>
 				</NavbarContent>
 			}
+			<NavbarMenu>
+				{arrayPaths.map((item, index) => (
+					<NavbarMenuItem key={`${item.name}-${index}`}>
+						<Link
+							className='w-full'
+							color={
+								index === 2 ? 'primary'
+								: index === arrayPaths.length - 1 ?
+									'danger'
+								:	'foreground'
+							}
+							href={item.path}
+							size='lg'
+						>
+							{item.name}
+						</Link>
+					</NavbarMenuItem>
+				))}
+			</NavbarMenu>
 		</Navbar>
 	);
 };

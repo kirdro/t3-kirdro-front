@@ -73,7 +73,7 @@ export const ChatWrapper: FC<IProps> = (props) => {
 			</DivBoxInfoSC>
 
 			<BoxMessages messages={messages} user={user} />
-			<MessageCreator onClick={send} />
+			<MessageCreator isLoading={isLoading} onClick={send} />
 		</DivWrapperChatSC>
 	);
 };

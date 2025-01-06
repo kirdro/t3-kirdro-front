@@ -6,10 +6,11 @@ import { FC, useState } from 'react';
 
 interface IProps {
 	onClick: (data: { text: string }) => void;
+	isLoading: boolean;
 }
 
 export const MessageCreator: FC<IProps> = (props) => {
-	const { onClick } = props;
+	const { onClick, isLoading } = props;
 	const [text, setText] = useState<string>('');
 
 	const onPress = () => {
@@ -33,7 +34,12 @@ export const MessageCreator: FC<IProps> = (props) => {
 				placeholder='Message'
 				variant={'bordered'}
 			/>
-			<Button onPress={onPress} color='primary' variant='ghost'>
+			<Button
+				isLoading={isLoading}
+				onPress={onPress}
+				color='primary'
+				variant='ghost'
+			>
 				Send
 			</Button>
 		</DivWrapperCreatorSC>
