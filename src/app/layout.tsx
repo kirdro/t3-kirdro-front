@@ -1,12 +1,17 @@
 import '@/styles/globals.css';
-
-import { GeistSans } from 'geist/font/sans';
 import { type Metadata } from 'next';
+import { auth } from '../server/auth';
 
 import { TRPCReactProvider } from '@/trpc/react';
 import StyledComponentsRegistry from '@/app/lib/registry';
 
 import { LayoutClient } from '@/app/layoutClient';
+import type { ISession } from '@/interfaces/interfaces';
+import { Source_Code_Pro } from 'next/font/google';
+
+const geist = Source_Code_Pro({
+	subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
 	title: 'Create T3 App',
@@ -14,15 +19,24 @@ export const metadata: Metadata = {
 	icons: [{ rel: 'icon', url: '/favicon.ico' }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
+	const session = await auth();
+
 	return (
-		<html lang='en' className={`${GeistSans.variable}`}>
+		<html
+			lang='en'
+			data-theme='dark'
+			style={{ colorScheme: 'dark' }}
+			className={geist.className}
+		>
 			<body>
 				<TRPCReactProvider>
 					<StyledComponentsRegistry>
-						<LayoutClient>{children}</LayoutClient>
+						<LayoutClient session={session as ISession | null}>
+							{children}
+						</LayoutClient>
 					</StyledComponentsRegistry>
 				</TRPCReactProvider>
 			</body>

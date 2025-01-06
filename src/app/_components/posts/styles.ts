@@ -15,7 +15,7 @@ export const DivBoxInfoSC = styled.div`
 	width: max-content;
 	height: max-content;
 	position: absolute;
-	top: 0;
+	top: 67px;
 	left: 0;
 	color: antiquewhite;
 `;
