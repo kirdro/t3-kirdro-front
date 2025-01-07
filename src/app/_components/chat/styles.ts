@@ -28,10 +28,10 @@ export const DivBoxListSC = styled.div`
 
 export const DivBoxMessageRightSC = styled.div`
 	display: grid;
-	width: 100%;
+	width: max-content;
 	height: max-content;
 	grid-template-rows: 100%;
-	grid-template-columns: 45px 3fr;
+	grid-template-columns: 45px max-content;
 	padding: 10px;
 	box-sizing: border-box;
 `;
@@ -40,7 +40,11 @@ export const DivBoxMessageLeftSC = styled.div`
 	width: 100%;
 	height: max-content;
 	grid-template-rows: 100%;
-	grid-template-columns: 3fr 1fr;
+	grid-template-columns: max-content 45px;
+	padding: 10px;
+	justify-content: end;
+	box-sizing: border-box;
+	gap: 8px;
 `;
 
 export const TextMessageSC = styled.div`
@@ -48,6 +52,16 @@ export const TextMessageSC = styled.div`
 	width: max-content;
 	height: max-content;
 	background: #012d2d;
+	border: 1px solid rgb(1, 11, 52);
+	border-radius: 10px;
+	padding: 5px;
+`;
+
+export const TextMessageCurrentUserSC = styled.div`
+	display: grid;
+	width: max-content;
+	height: max-content;
+	background: #025050;
 	border: 1px solid rgb(1, 11, 52);
 	border-radius: 10px;
 	padding: 5px;

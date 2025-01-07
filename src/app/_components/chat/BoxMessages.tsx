@@ -23,6 +23,7 @@ export const BoxMessages: FC<IProps> = (props) => {
 							text={item.text}
 							dateTime={item.createdAt}
 							img={item.userImg}
+							isLeft={item.userId === user.id}
 						/>
 					);
 				})}
