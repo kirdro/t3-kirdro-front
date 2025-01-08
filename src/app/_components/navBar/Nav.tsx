@@ -78,7 +78,7 @@ export const Nav: FC<{ session: ISession | null }> = (props) => {
 								isBordered
 								as='button'
 								className='transition-transform'
-								color='secondary'
+								color='success'
 								name={session.user.name}
 								size='sm'
 								src={session.user.image}
@@ -146,7 +146,6 @@ export const Nav: FC<{ session: ISession | null }> = (props) => {
 								:	'foreground'
 							}
 							href={item.path}
-							size='lg'
 						>
 							{item.name}
 						</Link>
