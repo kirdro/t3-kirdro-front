@@ -32,6 +32,10 @@ const arrayPaths: { name: string; path: string }[] = [
 		name: 'Chat',
 		path: '/chat',
 	},
+	{
+		name: 'Dashboard',
+		path: '/dashboard',
+	},
 ];
 
 export const Nav: FC<{ session: ISession | null }> = (props) => {

@@ -1,3 +1,6 @@
+import type { ForwardRefExoticComponent, RefAttributes } from 'react';
+import type { LucideProps } from 'lucide-react';
+
 export interface IUser {
 	createdAt: Date;
 	updatedAt: Date;
@@ -50,4 +53,14 @@ export interface ISession {
 	sessionToken: string;
 	userId: string;
 	expires: Date;
+}
+
+export interface ISectionsSidebar {
+	key: string;
+	href: string;
+	title: string;
+	children?: ISectionsSidebar[];
+	icon: ForwardRefExoticComponent<
+		Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>
+	>;
 }
