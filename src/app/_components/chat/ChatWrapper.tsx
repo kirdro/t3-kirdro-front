@@ -17,6 +17,8 @@ export const ChatWrapper: FC<IProps> = (props) => {
 	const [transport, setTransport] = useState('N/A');
 	const [messages, setMessages] = useState<IMessage[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	// const scrollRef = useRef<HTMLDivElement | null>(null);
+
 	useEffect(() => {
 		// if (socket.connected) {
 		// 	onConnect();
