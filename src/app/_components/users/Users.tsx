@@ -8,19 +8,17 @@ import { useGeneralStore } from '@/store/useGeneralStore';
 import { useEffect } from 'react';
 
 export const Users = () => {
-	const utils = api.useUtils();
+	// const utils = api.useUtils();
 	const [users] = api.user.getAll.useSuspenseQuery<IUser[]>();
 	const { updateGeneralStore } = useGeneralStore();
 
-	const onChangeUsers = () => {
+	useEffect(() => {
 		updateGeneralStore({
 			users: users,
-		}).then();
-	};
-
-	useEffect(() => {
-		onChangeUsers();
-	}, [users]);
+		}).catch((err) => {
+			console.log(err);
+		});
+	}, [users, updateGeneralStore]);
 
 	return (
 		<DivWrapperUsersSC>

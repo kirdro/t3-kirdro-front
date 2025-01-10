@@ -1,7 +1,7 @@
 // import { camelToSnakeCase } from 'src/settings';
 
 import { useStore } from './useStore';
-import { IUser } from '@/interfaces/interfaces';
+import { type IUser } from '@/interfaces/interfaces';
 // import { GlobalSearchStore } from './types';
 
 // console.log(import.meta);

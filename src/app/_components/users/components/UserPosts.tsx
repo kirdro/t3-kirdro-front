@@ -6,8 +6,8 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import { DivBoxPostsUserPostsSC } from '@/app/_components/users/styles';
-import { IPost } from '@/interfaces/interfaces';
-import { FC } from 'react';
+import { type IPost } from '@/interfaces/interfaces';
+import { type FC } from 'react';
 import { UserPost } from '@/app/_components/users/components/UserPost';
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';

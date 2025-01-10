@@ -17,13 +17,13 @@ import {
 } from '@/components/ui/table';
 import { useEffect, useState } from 'react';
 
-interface DataTableProps<TData, TValue> {
+interface DataTableProps<TData extends { id: string }, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
-	onSelect: (id: string) => Promise<void>;
+	onSelect: (id: string | undefined) => Promise<void>;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends { id: string }, TValue>({
 	columns,
 	data,
 	onSelect,
@@ -41,15 +41,22 @@ export function DataTable<TData, TValue>({
 
 	useEffect(() => {
 		if (table.getSelectedRowModel().rows.length > 0) {
-			console.log(
-				'asddfasfsadfasdf',
-				table.getSelectedRowModel().rows[0]?.original.id,
+			// console.log(
+			// 	'asddfasfsadfasdf',
+			// 	table.getSelectedRowModel().rows[0]?.original.id,
+			// );
+
+			onSelect(table.getSelectedRowModel().rows[0]?.original.id).catch(
+				(err) => {
+					console.log(err);
+				},
 			);
-			onSelect(table.getSelectedRowModel().rows[0]?.original.id);
 		} else {
-			onSelect('');
+			onSelect('').catch((err) => {
+				console.log(err);
+			});
 		}
-	}, [table.getSelectedRowModel().rows]);
+	}, [table.getSelectedRowModel().rows, onSelect]);
 
 	return (
 		<div className='rounded-md border'>

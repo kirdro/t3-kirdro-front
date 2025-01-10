@@ -1,5 +1,5 @@
 'use client';
-import { type FC, ReactNode, useEffect } from 'react';
+import { type FC, type ReactNode, useEffect } from 'react';
 import { NextUIProvider } from '@nextui-org/react';
 import { Nav } from '@/app/_components/navBar/Nav';
 import { DivWrapperLayoutClientSC } from '@/app/styles';

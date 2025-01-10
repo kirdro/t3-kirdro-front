@@ -9,6 +9,7 @@ import {
 import { DataTable } from '@/app/_components/users/components/DataTable';
 import { columns } from '@/app/settings/columns';
 import { type FC, useEffect, useState } from 'react';
+import type { ColumnDef } from '@tanstack/react-table';
 import type { IUser, IUserTable } from '@/interfaces/interfaces';
 import { DateTime } from 'luxon';
 import { useGeneralStore } from '@/store/useGeneralStore';
@@ -33,12 +34,14 @@ export const UserTable: FC<{ users: IUser[] }> = ({ users }) => {
 		setProcessedUsers(tempList);
 	}, [users]);
 
-	const onSelection = async (id: string) => {
-		const foundUser = users.find((item) => item.id === id);
-		await updateGeneralStore({
-			selectedUserId: id,
-			selectedUser: foundUser ? foundUser : null,
-		});
+	const onSelection = async (id: string | undefined) => {
+		if (id) {
+			const foundUser = users.find((item) => item.id === id);
+			await updateGeneralStore({
+				selectedUserId: id,
+				selectedUser: foundUser ? foundUser : null,
+			});
+		}
 	};
 
 	return (
@@ -50,7 +53,7 @@ export const UserTable: FC<{ users: IUser[] }> = ({ users }) => {
 				</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<DataTable
+				<DataTable<IUserTable, unknown>
 					onSelect={onSelection}
 					columns={columns}
 					data={processedUsers}

@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 import {
-	QueryKey,
+	type QueryKey,
 	useMutation,
 	useQuery,
 	useQueryClient,
-	UseQueryResult,
+	type UseQueryResult,
 } from '@tanstack/react-query';
 
 export const emptyObject = Object.freeze({});

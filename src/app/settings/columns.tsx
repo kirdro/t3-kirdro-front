@@ -1,22 +1,11 @@
 'use client';
 
 import type { ColumnDef } from '@tanstack/react-table';
-import type { TRole } from '@/interfaces/interfaces';
+import type { IUserTable } from '@/interfaces/interfaces';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-interface IUserTable {
-	createdAt: Date;
-	id: string;
-	name: string;
-	email: string;
-	image: string | null;
-	role: TRole;
-}
-
-export const columns: ColumnDef<IUserTable>[] = [
+export const columns: ColumnDef<IUserTable, unknown>[] = [
 	{
 		id: 'select',
 		cell: ({ row, table }) => {

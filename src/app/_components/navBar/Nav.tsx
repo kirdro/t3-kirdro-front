@@ -15,7 +15,7 @@ import {
 	NavbarMenuToggle,
 } from '@nextui-org/react';
 import Link from 'next/link';
-import { FC, useState } from 'react';
+import { type FC } from 'react';
 import type { ISession } from '@/interfaces/interfaces';
 import { usePathname } from 'next/navigation';
 
@@ -41,7 +41,6 @@ const arrayPaths: { name: string; path: string }[] = [
 export const Nav: FC<{ session: ISession | null }> = (props) => {
 	const { session } = props;
 	const pathname = usePathname();
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
 		<Navbar
@@ -49,7 +48,7 @@ export const Nav: FC<{ session: ISession | null }> = (props) => {
 		>
 			<NavbarContent>
 				<NavbarMenuToggle
-					aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+					// aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
 					className='sm:hidden'
 				/>
 				<NavbarBrand>
