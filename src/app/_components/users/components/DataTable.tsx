@@ -56,7 +56,7 @@ export function DataTable<TData extends { id: string }, TValue>({
 				console.log(err);
 			});
 		}
-	}, [table.getSelectedRowModel().rows, onSelect]);
+	}, [table.getSelectedRowModel().rows]);
 
 	return (
 		<div className='rounded-md border'>
