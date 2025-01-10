@@ -2,7 +2,7 @@
 
 import { DivWrapperCreatorSC } from '@/app/_components/chat/styles';
 import { Button, Textarea } from '@nextui-org/react';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 
 interface IProps {
 	onClick: (data: { text: string }) => void;

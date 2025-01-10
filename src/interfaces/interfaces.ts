@@ -1,5 +1,22 @@
+import type { ForwardRefExoticComponent, RefAttributes } from 'react';
+import type { LucideProps } from 'lucide-react';
+
 export interface IUser {
 	createdAt: Date;
+	updatedAt: Date;
+	id: string;
+	name: string;
+	email: string;
+	emailVerified: Date;
+	image: string;
+	role: TRole;
+	// accounts: '';
+	// sessions: '';
+	// posts: ''
+}
+
+export interface IUserTable {
+	createdAt: string;
 	updatedAt: Date;
 	id: string;
 	name: string;
@@ -42,6 +59,7 @@ export interface IUserAut {
 	email: string;
 	emailVerified: null;
 	image: string;
+	role: TRole;
 }
 
 export interface ISession {
@@ -50,4 +68,14 @@ export interface ISession {
 	sessionToken: string;
 	userId: string;
 	expires: Date;
+}
+
+export interface ISectionsSidebar {
+	key: string;
+	href: string;
+	title: string;
+	children?: ISectionsSidebar[];
+	icon: ForwardRefExoticComponent<
+		Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>
+	>;
 }

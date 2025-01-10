@@ -55,6 +55,7 @@ export const TextMessageSC = styled.div`
 	border: 1px solid rgb(1, 11, 52);
 	border-radius: 10px;
 	padding: 5px;
+	max-width: 300px;
 `;
 
 export const TextMessageCurrentUserSC = styled.div`
@@ -65,6 +66,7 @@ export const TextMessageCurrentUserSC = styled.div`
 	border: 1px solid rgb(1, 11, 52);
 	border-radius: 10px;
 	padding: 5px;
+	max-width: 300px;
 `;
 
 export const BoxTextAndTimeSC = styled.div`

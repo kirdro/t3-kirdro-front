@@ -34,13 +34,31 @@ export const postRouter = createTRPCRouter({
 	// 		});
 	// 	}),
 
-	getLatest: protectedProcedure.query(async ({ ctx }) => {
-		const post = await ctx.db.post.findFirst({
-			orderBy: { createdAt: 'desc' },
-			where: { createdBy: { id: ctx.session.user.id } },
-		});
+	findPostsByUserId: protectedProcedure
+		.input(
+			z.object({
+				userId: z.string(),
+			}),
+		)
+		.query(async ({ ctx, input }) => {
+			if (input.userId !== '') {
+				const posts = await ctx.db.post.findMany({
+					where: { createdBy: { id: input.userId } },
+				});
+				return posts;
+			}
+			return [];
+		}),
 
-		return post ?? null;
+	getLatest: protectedProcedure.query(async ({ ctx }) => {
+		if (ctx.session.user.id !== '') {
+			const post = await ctx.db.post.findFirst({
+				orderBy: { createdAt: 'desc' },
+				where: { createdBy: { id: ctx.session.user.id } },
+			});
+
+			return post ?? null;
+		}
 	}),
 
 	getSecretMessage: protectedProcedure.query(() => {

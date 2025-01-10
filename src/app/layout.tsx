@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import { type Metadata } from 'next';
-import { auth } from '../server/auth';
+import { auth } from '@/server/auth';
 
 import { TRPCReactProvider } from '@/trpc/react';
 import StyledComponentsRegistry from '@/app/lib/registry';
@@ -8,6 +8,7 @@ import StyledComponentsRegistry from '@/app/lib/registry';
 import { LayoutClient } from '@/app/layoutClient';
 import type { ISession } from '@/interfaces/interfaces';
 import { Source_Code_Pro } from 'next/font/google';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const geist = Source_Code_Pro({
 	subsets: ['latin'],
@@ -29,14 +30,21 @@ export default async function RootLayout({
 			lang='en'
 			data-theme='dark'
 			style={{ colorScheme: 'dark' }}
-			className={geist.className}
+			className={geist.className + ' dark'}
 		>
 			<body>
 				<TRPCReactProvider>
 					<StyledComponentsRegistry>
-						<LayoutClient session={session as ISession | null}>
-							{children}
-						</LayoutClient>
+						<ThemeProvider
+							attribute='class'
+							defaultTheme='system'
+							enableSystem
+							disableTransitionOnChange
+						>
+							<LayoutClient session={session as ISession | null}>
+								{children}
+							</LayoutClient>
+						</ThemeProvider>
 					</StyledComponentsRegistry>
 				</TRPCReactProvider>
 			</body>
