@@ -9,7 +9,7 @@ import {
 } from '@/app/_components/chat/styles';
 import { Avatar } from '@nextui-org/react';
 import type { FC } from 'react';
-import { DateTime } from 'luxon';
+import getDateTime from '@/app/tools/getDateTime';
 
 interface IProps {
 	text: string;
@@ -26,7 +26,7 @@ export const Message: FC<IProps> = (props) => {
 			<DivBoxMessageLeftSC>
 				<BoxTextAndTimeSC>
 					<SpanDateTimeSC>
-						{DateTime.fromJSDate(new Date(dateTime)).toFormat('FF')}
+						{getDateTime(dateTime, 'FF')}
 					</SpanDateTimeSC>
 					<TextMessageCurrentUserSC>{text}</TextMessageCurrentUserSC>
 				</BoxTextAndTimeSC>
@@ -39,9 +39,7 @@ export const Message: FC<IProps> = (props) => {
 		<DivBoxMessageRightSC>
 			<Avatar isBordered color='default' src={img} />
 			<BoxTextAndTimeSC>
-				<SpanDateTimeSC>
-					{DateTime.fromJSDate(new Date(dateTime)).toFormat('FF')}
-				</SpanDateTimeSC>
+				<SpanDateTimeSC>{getDateTime(dateTime, 'FF')}</SpanDateTimeSC>
 				<TextMessageSC>{text}</TextMessageSC>
 			</BoxTextAndTimeSC>
 		</DivBoxMessageRightSC>

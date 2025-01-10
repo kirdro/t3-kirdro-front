@@ -15,7 +15,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export const SidebarWrapper = () => {
-	const getCurrentAnchor = () => '#anchor-demo-static';
 	const pathname = usePathname();
 
 	return (

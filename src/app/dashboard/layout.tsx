@@ -13,9 +13,9 @@ const DashboardLayout = ({
 				<SidebarWrapper />
 				<div className={cn('DivWrapperDashboardContentSC')}>
 					<SidebarTrigger />
-					{children}
 				</div>
 			</SidebarProvider>
+			{children}
 		</DashboardWrapper>
 	);
 };

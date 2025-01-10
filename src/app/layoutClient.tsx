@@ -15,7 +15,10 @@ export const LayoutClient: FC<{
 	useEffect(() => {
 		if (!session && pathname !== '/') {
 			redirect('/');
+		} else if (session?.user.role === 'USER' && pathname !== '/') {
+			redirect('/');
 		}
+		console.log('>>>>>>>>>>>>>>>>>>>>>>>', session);
 	}, [session, pathname]);
 
 	return (

@@ -15,6 +15,20 @@ export interface IUser {
 	// posts: ''
 }
 
+export interface IUserTable {
+	createdAt: string;
+	updatedAt: Date;
+	id: string;
+	name: string;
+	email: string;
+	emailVerified: Date;
+	image: string;
+	role: TRole;
+	// accounts: '';
+	// sessions: '';
+	// posts: ''
+}
+
 export type TRole = 'USER' | 'ADMIN';
 
 export interface IPost {
@@ -45,6 +59,7 @@ export interface IUserAut {
 	email: string;
 	emailVerified: null;
 	image: string;
+	role: TRole;
 }
 
 export interface ISession {

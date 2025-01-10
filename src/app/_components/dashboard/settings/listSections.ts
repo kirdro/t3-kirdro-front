@@ -1,12 +1,12 @@
 import type { ISectionsSidebar } from '@/interfaces/interfaces';
-import { Home, Inbox } from 'lucide-react';
+import { Inbox, Users } from 'lucide-react';
 
 const listSections: ISectionsSidebar[] = [
 	{
 		key: '1',
 		href: '/dashboard/users',
 		title: 'Users',
-		icon: Home,
+		icon: Users,
 	},
 	{
 		key: '2',
