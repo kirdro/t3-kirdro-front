@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { DivWrapperUserInfoSC } from '@/app/_components/users/styles';
-import { Chip, Divider } from '@nextui-org/react';
+import { Chip, Divider, Image } from '@nextui-org/react';
 import getDateTime from '@/app/tools/getDateTime';
 
 export const InfoUser = () => {
@@ -60,6 +60,17 @@ export const InfoUser = () => {
 						<p className='text-small text-default-400'>
 							{selectedUser.email}
 						</p>
+					</div>
+					<Divider className='my-4' />
+					<div className='space-y-1'>
+						<Chip size='sm'>Фото</Chip>
+						<Image
+							isBlurred
+							alt='Avatar'
+							className='m-5'
+							src={selectedUser.image}
+							width={140}
+						/>
 					</div>
 					<Divider className='my-4' />
 				</DivWrapperUserInfoSC>

@@ -14,6 +14,13 @@ import listSections from '@/app/_components/dashboard/settings/listSections';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+/**
+ * List of sections for the sidebar in the dashboard.
+ * Each section contains a key, href, title, and icon.
+ *
+ * @type {ISectionsSidebar[]}
+ */
+
 export const SidebarWrapper = () => {
 	const pathname = usePathname();
 
