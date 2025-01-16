@@ -79,3 +79,12 @@ export interface ISectionsSidebar {
 		Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>
 	>;
 }
+
+export interface ISection {
+	path: string;
+	name: string;
+	id: number;
+	createdAt: Date;
+	updatedAt: Date;
+	keyName: string;
+}
