@@ -66,8 +66,8 @@ export const PostsWrapper: FC<IProps> = (props) => {
 			title: data.title,
 			content: data.content,
 			id: user.id,
-			userImg: user.image,
-			userName: user.name,
+			userImg: user.image ? user.image : '',
+			userName: user.name ? user.name : '',
 		});
 		setIsLoading(true);
 	};

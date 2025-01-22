@@ -1,5 +1,5 @@
 import type { ISectionsSidebar } from '@/interfaces/interfaces';
-import { Inbox, Users } from 'lucide-react';
+import { LayoutPanelTop, Package, TableOfContents, Users } from 'lucide-react';
 
 /**
  * List of sections for the sidebar in the dashboard.
@@ -19,7 +19,19 @@ const listSections: ISectionsSidebar[] = [
 		key: '2',
 		href: '/dashboard/sections',
 		title: 'Sections',
-		icon: Inbox,
+		icon: TableOfContents,
+	},
+	{
+		key: '3',
+		href: '/dashboard/subSections',
+		title: 'Sub sections',
+		icon: LayoutPanelTop,
+	},
+	{
+		key: '4',
+		href: '/dashboard/products',
+		title: 'Продукты',
+		icon: Package,
 	},
 ];
 

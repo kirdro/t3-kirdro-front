@@ -20,6 +20,10 @@ export const env = createEnv({
 		EMAIL_SERVER_HOST: z.string(),
 		EMAIL_SERVER_PORT: z.string(),
 		EMAIL_FROM: z.string(),
+		STORAGE_ID: z.string(),
+		STORAGE_SECRET: z.string(),
+		AWS_BUCKET_NAME: z.string(),
+		REGION: z.string(),
 		NODE_ENV: z
 			.enum(['development', 'test', 'production'])
 			.default('development'),
@@ -49,6 +53,10 @@ export const env = createEnv({
 		EMAIL_SERVER_HOST: process.env.EMAIL_SERVER_HOST,
 		EMAIL_SERVER_PORT: process.env.EMAIL_SERVER_PORT,
 		EMAIL_FROM: process.env.EMAIL_FROM,
+		STORAGE_ID: process.env.STORAGE_ID,
+		STORAGE_SECRET: process.env.STORAGE_SECRET,
+		AWS_BUCKET_NAME: process.env.AWS_BUCKET_NAME,
+		REGION: process.env.REGION,
 		NODE_ENV: process.env.NODE_ENV,
 	},
 	/**

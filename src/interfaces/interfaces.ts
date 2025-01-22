@@ -87,4 +87,16 @@ export interface ISection {
 	createdAt: Date;
 	updatedAt: Date;
 	keyName: string;
+	sortId: number;
+}
+
+export interface ISubSection {
+	id: number;
+	name: string;
+	keyName: string;
+	createdAt: Date;
+	updatedAt: Date;
+	path: string;
+	sortId: number;
+	sectionId: number;
 }
