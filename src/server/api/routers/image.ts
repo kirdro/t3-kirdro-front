@@ -5,6 +5,7 @@ import { uploadToS3 } from '@/app/lib/s3';
 
 /**
  * Router for handling section-related API endpoints.
+ *
  */
 export const imageRouter = createTRPCRouter({
 	createPresignedUrl: protectedProcedure

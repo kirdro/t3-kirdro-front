@@ -4,7 +4,7 @@ import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { type FC } from 'react';
 import { CustomImage } from '@/app/_components/CustomImage/CustomImage';
-import { Input as InputHero, Textarea } from '@heroui/react';
+import { Checkbox, Input as InputHero, Textarea } from '@heroui/react';
 
 interface IProps {
 	onChooseFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,6 +13,10 @@ interface IProps {
 	onDeleteImage: () => void;
 	previews: string[];
 	preview: string | null;
+	onChangeChecked: (isChecked: boolean) => void;
+	onChangeName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onChangeDescription: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onChangePrice: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const ContentModalCreate: FC<IProps> = (props) => {
@@ -23,10 +27,14 @@ export const ContentModalCreate: FC<IProps> = (props) => {
 		onDeleteImage,
 		previews,
 		preview,
+		onChangeChecked,
+		onChangeName,
+		onChangeDescription,
+		onChangePrice,
 	} = props;
 
 	return (
-		<div className='grid w-full auto-rows-max items-center justify-items-center gap-1.5'>
+		<div className='grid w-full auto-rows-max items-center gap-1.5'>
 			<InputHero
 				// key={placement}
 				// description={placement}
@@ -34,6 +42,7 @@ export const ContentModalCreate: FC<IProps> = (props) => {
 				labelPlacement={'inside'}
 				type='text'
 				isRequired
+				onChange={onChangeName}
 			/>
 			<Separator className='my-4' />
 			<InputHero
@@ -44,6 +53,7 @@ export const ContentModalCreate: FC<IProps> = (props) => {
 				type='number'
 				placeholder='0.00'
 				isRequired
+				onChange={onChangePrice}
 			/>
 			<Separator className='my-4' />
 			<Textarea
@@ -52,8 +62,14 @@ export const ContentModalCreate: FC<IProps> = (props) => {
 				placeholder='Введите описание'
 				isRequired={true}
 				fullWidth={true}
+				onChange={onChangeDescription}
 				// disableAutosize={true}
 			/>
+			<Separator className='my-4' />
+
+			<Checkbox onValueChange={onChangeChecked} color={'success'}>
+				Публиковать
+			</Checkbox>
 			<Separator className='my-4' />
 			{preview && (
 				<CustomImage

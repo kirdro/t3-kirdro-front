@@ -5,6 +5,7 @@ import { messageRouter } from '@/server/api/routers/message';
 import { sectionRouter } from '@/server/api/routers/section';
 import { subSectionRouter } from '@/server/api/routers/subSection';
 import { imageRouter } from '@/server/api/routers/image';
+import { productRouter } from '@/server/api/routers/product';
 
 /**
  * This is the primary router for your server.
@@ -18,6 +19,7 @@ export const appRouter = createTRPCRouter({
 	section: sectionRouter,
 	subSection: subSectionRouter,
 	image: imageRouter,
+	product: productRouter,
 });
 
 // export type definition of API

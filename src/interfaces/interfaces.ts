@@ -100,3 +100,17 @@ export interface ISubSection {
 	sortId: number;
 	sectionId: number;
 }
+
+export interface IProduct {
+	createdAt: Date;
+	createdById: string;
+	description: string;
+	id: number;
+	image: string;
+	images: string[];
+	isPublished: boolean;
+	name: string;
+	price: number;
+	subSectionId: number;
+	updatedAt: Date;
+}

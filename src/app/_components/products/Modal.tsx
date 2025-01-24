@@ -14,10 +14,11 @@ interface IProps {
 	onOpenChange: () => void;
 	children: React.ReactNode;
 	onSave: () => void;
+	isLoading: boolean;
 }
 
 export const CustomModal: FC<IProps> = (props) => {
-	const { isOpen, onOpenChange, children, onSave } = props;
+	const { isOpen, onOpenChange, children, onSave, isLoading } = props;
 
 	return (
 		<Modal size={'5xl'} isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -40,7 +41,11 @@ export const CustomModal: FC<IProps> = (props) => {
 							>
 								Отмена
 							</Button>
-							<Button color='primary' onPress={onSave}>
+							<Button
+								isLoading={isLoading}
+								color='primary'
+								onPress={onSave}
+							>
 								Создать
 							</Button>
 						</ModalFooter>

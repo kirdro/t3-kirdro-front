@@ -29,6 +29,7 @@ model User {
   messages      Message[]
   // hashedPassword String?
   Authenticator Authenticator[]
+  Product       Product[]
 
   @@unique([id, image])
   @@unique([id, image, name])
@@ -155,4 +156,7 @@ model Product {
   // section     Section  @relation(fields: [sectionId], references: [id])
   subSectionId Int
   subSection   SubSection @relation(fields: [subSectionId], references: [id])
+  isPublished  Boolean    @default(false)
+  createdBy    User       @relation(fields: [createdById], references: [id])
+  createdById  String
 }

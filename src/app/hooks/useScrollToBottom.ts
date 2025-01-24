@@ -5,11 +5,6 @@ const useScrollToBottom = (data: unknown) => {
 
 	useEffect(() => {
 		if (ref.current) {
-			console.log(
-				'sdfasdfasdfasdf',
-				ref.current.scrollHeight,
-				ref.current.scrollTop,
-			);
 			// ref.current.scroll({ top: ref.current.scrollHeight });
 			// ref.current.scrollTop = ref.current.scrollHeight;
 			ref.current.scrollIntoView({ block: 'end' });

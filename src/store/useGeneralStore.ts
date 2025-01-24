@@ -1,7 +1,7 @@
 // import { camelToSnakeCase } from 'src/settings';
 
 import { useStore } from './useStore';
-import { ISection, type IUser } from '@/interfaces/interfaces';
+import { IProduct, ISection, type IUser } from '@/interfaces/interfaces';
 // import { GlobalSearchStore } from './types';
 
 // console.log(import.meta);
@@ -16,6 +16,7 @@ export const initialState = {
 	users: [] as IUser[],
 	selectedUser: null as IUser | null,
 	sections: [] as ISection[],
+	selectedProduct: null as IProduct | null,
 };
 
 export type StoreType = typeof initialState;
