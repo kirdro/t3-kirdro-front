@@ -29,6 +29,7 @@ model User {
   messages      Message[]
   // hashedPassword String?
   Authenticator Authenticator[]
+  Product       Product[]
 
   @@unique([id, image])
   @@unique([id, image, name])
@@ -123,4 +124,39 @@ model Section {
   updatedAt DateTime @updatedAt
   keyName   String
   path      String
+  sortId    Int
+
+  SubSection SubSection[]
+}
+
+model SubSection {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  keyName   String
+  path      String
+  sortId    Int
+  sectionId Int
+  section   Section  @relation(fields: [sectionId], references: [id])
+
+  Product Product[]
+}
+
+model Product {
+  id           Int        @id @default(autoincrement())
+  name         String
+  description  String
+  price        Float
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  image        String?
+  images       String[]
+  // sectionId   Int
+  // section     Section  @relation(fields: [sectionId], references: [id])
+  subSectionId Int
+  subSection   SubSection @relation(fields: [subSectionId], references: [id])
+  isPublished  Boolean    @default(false)
+  createdBy    User       @relation(fields: [createdById], references: [id])
+  createdById  String
 }

@@ -39,8 +39,9 @@ export const messageRouter = createTRPCRouter({
 		.query(async ({ ctx, input }) => {
 			if (input.userId !== '') {
 				const messages = await ctx.db.message.findMany({
-					where: { User: { id: input.userId } },
+					where: { userId: input.userId },
 				});
+
 				return messages;
 			}
 			return [];

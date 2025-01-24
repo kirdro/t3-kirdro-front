@@ -6,6 +6,7 @@ import { DivWrapperLayoutClientSC } from '@/app/styles';
 import type { ISession } from '@/interfaces/interfaces';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { redirect, usePathname } from 'next/navigation';
+import { HeroUIProvider } from '@heroui/react';
 
 export const LayoutClient: FC<{
 	children: ReactNode;
@@ -23,12 +24,14 @@ export const LayoutClient: FC<{
 
 	return (
 		<NextUIProvider>
-			<DivWrapperLayoutClientSC>
-				<NextThemesProvider defaultTheme='dark'>
-					<Nav session={session} />
-					{children}
-				</NextThemesProvider>
-			</DivWrapperLayoutClientSC>
+			<HeroUIProvider>
+				<DivWrapperLayoutClientSC>
+					<NextThemesProvider defaultTheme='dark'>
+						<Nav session={session} />
+						{children}
+					</NextThemesProvider>
+				</DivWrapperLayoutClientSC>
+			</HeroUIProvider>
 		</NextUIProvider>
 	);
 };

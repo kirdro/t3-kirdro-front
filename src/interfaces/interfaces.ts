@@ -87,4 +87,30 @@ export interface ISection {
 	createdAt: Date;
 	updatedAt: Date;
 	keyName: string;
+	sortId: number;
+}
+
+export interface ISubSection {
+	id: number;
+	name: string;
+	keyName: string;
+	createdAt: Date;
+	updatedAt: Date;
+	path: string;
+	sortId: number;
+	sectionId: number;
+}
+
+export interface IProduct {
+	createdAt: Date;
+	createdById: string;
+	description: string;
+	id: number;
+	image: string;
+	images: string[];
+	isPublished: boolean;
+	name: string;
+	price: number;
+	subSectionId: number;
+	updatedAt: Date;
 }

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc';
+import _ from 'lodash';
 
 /**
  * Router for handling section-related API endpoints.
@@ -22,6 +23,7 @@ export const sectionRouter = createTRPCRouter({
 				name: z.string().min(1),
 				keyName: z.string(),
 				path: z.string(),
+				sortId: z.number(),
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
@@ -30,6 +32,7 @@ export const sectionRouter = createTRPCRouter({
 					name: input.name,
 					keyName: input.keyName,
 					path: input.path,
+					sortId: input.sortId,
 				},
 			});
 		}),
@@ -41,8 +44,47 @@ export const sectionRouter = createTRPCRouter({
 	 */
 	getAllSections: protectedProcedure.query(async ({ ctx }) => {
 		const sections = await ctx.db.section.findMany();
-		return sections;
+		return _.sortBy(sections, 'sortId');
 	}),
+
+	/**
+	 * Endpoint to update an existing section.
+	 *
+	 * @input {Object} input - The input object.
+	 * @input {number} input.id - The ID of the section to update.
+	 * @input {string} input.name - The new name of the section.
+	 * @input {string} input.keyName - The new key name of the section.
+	 * @input {string} input.path - The new path of the section.
+	 *
+	 * @returns {Promise<Object>} The updated section.
+	 */
+	updateSection: protectedProcedure
+		.input(
+			z.object({
+				id: z.number(),
+				name: z.string().min(1),
+				keyName: z.string(),
+				path: z.string(),
+				sortId: z.number(),
+			}),
+		)
+		.mutation(async ({ ctx, input }) => {
+			return ctx.db.section.update({
+				where: { id: input.id },
+				data: {
+					name: input.name,
+					keyName: input.keyName,
+					path: input.path,
+					sortId: input.sortId,
+				},
+			});
+		}),
+
+	deleteSection: protectedProcedure
+		.input(z.object({ id: z.number() }))
+		.mutation(async ({ ctx, input }) => {
+			return ctx.db.section.delete({ where: { id: input.id } });
+		}),
 
 	// findPostsByUserId: protectedProcedure
 	// 	.input(

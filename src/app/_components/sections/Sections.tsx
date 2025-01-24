@@ -10,12 +10,19 @@ import {
 	NavbarBrand,
 	NavbarContent,
 	NavbarItem,
+	useDisclosure,
 } from '@nextui-org/react';
 import { api } from '@/trpc/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGeneralStore } from '@/store/useGeneralStore';
 import type { ISection } from '@/interfaces/interfaces';
 import { ModalWrapper } from '@/app/_components/sections/Modal';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+import { Pen, Plus, Trash2 } from 'lucide-react';
+import { ModalContentCreateSection } from '@/app/_components/sections/ModalContentCreateSection';
+import { ModalContentUpdateSection } from '@/app/_components/sections/ModalContentUpdateSection';
+import { ModalContentDeleteSection } from '@/app/_components/sections/ModalContentDeleteSection';
 
 export const AcmeLogo = () => {
 	return (
@@ -35,6 +42,26 @@ export const Sections = () => {
 		api.section.getAllSections.useQuery<ISection[]>();
 	const { updateGeneralStore, getGeneralStore } = useGeneralStore();
 	const { sections } = getGeneralStore();
+	const [isRemove, setIsRemove] = useState<boolean>(false);
+	const [selectedId, setSelectedId] = useState<number>(0);
+	const {
+		isOpen: isOpenCreateModal,
+		onOpen: onOpenCreateModal,
+		onOpenChange: onOpenChangeCreateModal,
+		onClose: onCloseCreateModal,
+	} = useDisclosure();
+	const {
+		isOpen: isOpenDeleteModal,
+		onOpen: onOpenDeleteModal,
+		onOpenChange: onOpenChangeDeleteModal,
+		onClose: onCloseDeleteModal,
+	} = useDisclosure();
+	const {
+		isOpen: isOpenUpdateModal,
+		onOpen: onOpenUpdateModal,
+		onOpenChange: onOpenChangeUpdateModal,
+		onClose: onCloseUpdateModal,
+	} = useDisclosure();
 
 	useEffect(() => {
 		updateGeneralStore({
@@ -43,6 +70,19 @@ export const Sections = () => {
 			console.log(err);
 		});
 	}, [data]);
+
+	const onChangeChecked = (checked: boolean) => {
+		setIsRemove(checked);
+	};
+
+	const onClickButton = (id: number, status: 'delete' | 'update') => () => {
+		setSelectedId(id);
+		if (status === 'delete') {
+			onOpenDeleteModal();
+		} else {
+			onOpenUpdateModal();
+		}
+	};
 
 	return (
 		<SectionsSC>
@@ -59,19 +99,117 @@ export const Sections = () => {
 						{sections.map((section) => {
 							return (
 								<NavbarItem key={`sections-${section.id}`}>
-									<Button
-										// as={Link}
-										color='primary'
-										// href='#'
-										variant='flat'
-									>
-										{section.name}
-									</Button>
+									{isRemove ?
+										<Button
+											// as={Link}
+											color='danger'
+											// href='#'
+											variant='flat'
+											startContent={<Trash2 />}
+											onPress={onClickButton(
+												section.id,
+												'delete',
+											)}
+										>
+											{section.name}
+										</Button>
+									:	<Button
+											// as={Link}
+											color='primary'
+											// href='#'
+											variant='flat'
+											startContent={<Pen />}
+											onPress={onClickButton(
+												section.id,
+												'update',
+											)}
+										>
+											{section.name}
+										</Button>
+									}
 								</NavbarItem>
 							);
 						})}
+						<ModalWrapper
+							isOpen={isOpenUpdateModal}
+							onClose={onCloseUpdateModal}
+							onOpenChange={onOpenChangeUpdateModal}
+						>
+							<ModalContentUpdateSection
+								onClose={onCloseUpdateModal}
+								nameSection={
+									sections.find(
+										(section) => section.id === selectedId,
+									)?.name ?? ''
+								}
+								keyNameSection={
+									sections.find(
+										(section) => section.id === selectedId,
+									)?.keyName ?? ''
+								}
+								pathSection={
+									sections.find(
+										(section) => section.id === selectedId,
+									)?.path ?? ''
+								}
+								sortId={
+									sections.find(
+										(section) => section.id === selectedId,
+									)?.sortId ?? 0
+								}
+								idSection={selectedId}
+							/>
+						</ModalWrapper>
+						<ModalWrapper
+							isOpen={isOpenDeleteModal}
+							onClose={onCloseDeleteModal}
+							onOpenChange={onOpenChangeDeleteModal}
+						>
+							<ModalContentDeleteSection
+								onClose={onCloseDeleteModal}
+								nameSection={
+									sections.find(
+										(section) => section.id === selectedId,
+									)?.name ?? ''
+								}
+								keyNameSection={
+									sections.find(
+										(section) => section.id === selectedId,
+									)?.keyName ?? ''
+								}
+								pathSection={
+									sections.find(
+										(section) => section.id === selectedId,
+									)?.path ?? ''
+								}
+								sortId={
+									sections.find(
+										(section) => section.id === selectedId,
+									)?.sortId ?? 0
+								}
+								idSection={selectedId}
+							/>
+						</ModalWrapper>
 						<NavbarItem>
-							<ModalWrapper />
+							<Button
+								// as={Link}
+								color='primary'
+								// href='#'
+								variant='flat'
+								startContent={<Plus />}
+								onPress={onOpenCreateModal}
+							>
+								Создать секцию
+							</Button>
+							<ModalWrapper
+								isOpen={isOpenCreateModal}
+								onClose={onCloseCreateModal}
+								onOpenChange={onOpenChangeCreateModal}
+							>
+								<ModalContentCreateSection
+									onClose={onCloseCreateModal}
+								/>
+							</ModalWrapper>
 						</NavbarItem>
 					</NavbarContent>
 					<NavbarContent justify='end'>
@@ -85,6 +223,16 @@ export const Sections = () => {
 								Sign Up
 							</Button>
 						</NavbarItem>
+					</NavbarContent>
+					<NavbarContent>
+						<div className='flex items-center space-x-2'>
+							<Switch
+								id='airplane-mode'
+								onCheckedChange={onChangeChecked}
+								checked={isRemove}
+							/>
+							<Label htmlFor='airplane-mode'>Remove mode</Label>
+						</div>
 					</NavbarContent>
 				</Navbar>
 			</SectionContentSC>
