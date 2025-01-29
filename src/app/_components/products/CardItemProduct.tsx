@@ -41,7 +41,7 @@ export const CardItemProduct: FC<IProps> = (props) => {
 	};
 
 	const onCheck = (e:boolean) => {
-
+		console.log( e)
 	}
 
 	return (
