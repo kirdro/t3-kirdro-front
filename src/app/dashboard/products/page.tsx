@@ -8,7 +8,7 @@ const Page = async () => {
 	const data = await api.subSection.getAll();
 	return (
 		<HydrateClient>
-			<div className={cn('grid h-full w-full p-6', 'box-border')}>
+			<div className={cn('grid h-full w-full p-6 box-cols-rows', 'box-border')}>
 				{session && <Products listSybSections={data} />}
 			</div>
 		</HydrateClient>

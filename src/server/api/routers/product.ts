@@ -84,21 +84,25 @@ export const productRouter = createTRPCRouter({
 	update: protectedProcedure
 		.input(
 			z.object({
-				id: z.number(),
 				name: z.string().min(1),
-				keyName: z.string(),
-				path: z.string(),
-				sortId: z.number(),
+				description: z.string(),
+				price: z.number(),
+				image: z.string(),
+				images: z.array(z.string()),
+				isPublished: z.boolean(),
+				id: z.number()
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
-			return ctx.db.section.update({
+			return ctx.db.product.update({
 				where: { id: input.id },
 				data: {
 					name: input.name,
-					keyName: input.keyName,
-					path: input.path,
-					sortId: input.sortId,
+					description: input.description,
+					price: input.price,
+					image: input.image,
+					images: { set: input.images },
+					isPublished: input.isPublished,
 				},
 			});
 		}),
@@ -106,6 +110,6 @@ export const productRouter = createTRPCRouter({
 	delete: protectedProcedure
 		.input(z.object({ id: z.number() }))
 		.mutation(async ({ ctx, input }) => {
-			return ctx.db.section.delete({ where: { id: input.id } });
+			return ctx.db.product.delete({ where: { id: input.id } });
 		}),
 });

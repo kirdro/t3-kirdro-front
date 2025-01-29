@@ -5,7 +5,7 @@ export const ProductsWrapperSC = styled.div`
 	display: grid;
 	width: 100%;
 	height: 100%;
-	grid-template-rows: max-content auto;
+	grid-template-rows: max-content calc(100% - 40px);
 	grid-template-columns: 100%;
 `;
 
@@ -24,6 +24,7 @@ export const DivProductLeftSideSC = styled.div`
 	height: 100%;
 	grid-template-columns: 100%;
 	grid-template-rows: 100%;
+	overflow: auto;
 `;
 
 export const DivProductRightSideSC = styled.div`
