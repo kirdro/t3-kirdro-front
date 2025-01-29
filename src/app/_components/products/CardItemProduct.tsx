@@ -35,11 +35,14 @@ export const CardItemProduct: FC<IProps> = (props) => {
 		}
 	}, []);
 
-	console.log('>>>>>>>>>>>dfgdfsgsdf>', height);
 
 	const onDelete = (index: number) => {
 		console.log('><><>');
 	};
+
+	const onCheck = (e:boolean) => {
+
+	}
 
 	return (
 		<DivProductItemSC>
@@ -87,9 +90,10 @@ export const CardItemProduct: FC<IProps> = (props) => {
 								<p>{product.subSectionId}</p>
 								<Divider className='my-4' />
 								<Chip>Is published</Chip>
-								<p>{product.isPublished}</p>
 								<Checkbox
-									checked={product.isPublished}
+									onValueChange={onCheck}
+									isSelected={product.isPublished}
+									// defaultChecked={product.isPublished}
 								></Checkbox>
 								<Divider className='my-4' />
 								<Chip>Image</Chip>

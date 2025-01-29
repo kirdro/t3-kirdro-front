@@ -6,7 +6,6 @@ import {
 	DivProductRightSideSC,
 	DivWrapperProductSC,
 } from '@/app/_components/products/styles';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { Plus } from 'lucide-react';
 import { CustomModal } from '@/app/_components/products/Modal';
 import { ContentModalCreate } from '@/app/_components/products/ContentModalCreate';
@@ -146,31 +145,29 @@ export const CardBodyCustom: FC<IProps> = (props) => {
 		<CardBody>
 			<DivWrapperProductSC>
 				<DivProductLeftSideSC>
-					<ScrollArea className='h-full w-full rounded-md border'>
-						<div className='grid h-max w-full auto-rows-max gap-2 p-4'>
-							<Button
-								startContent={<Plus />}
-								color='primary'
-								variant='flat'
-								onPress={onOpen}
-								isLoading={isPending}
-							>
-								Добавить продукт
-							</Button>
-							{data.map((item, i) => {
-								return (
-									<CardBodyProduct
-										key={`product-${i}`}
-										product={item}
-										onSelect={onSelectProduct}
-										isSelected={
-											selectedProduct?.id === item.id
-										}
-									/>
-								);
-							})}
-						</div>
-					</ScrollArea>
+					<div className='grid h-max w-full auto-rows-max gap-2 p-4'>
+						<Button
+							startContent={<Plus />}
+							color='primary'
+							variant='flat'
+							onPress={onOpen}
+							isLoading={isPending}
+						>
+							Добавить продукт
+						</Button>
+						{data.map((item, i) => {
+							return (
+								<CardBodyProduct
+									key={`product-${i}`}
+									product={item}
+									onSelect={onSelectProduct}
+									isSelected={
+										selectedProduct?.id === item.id
+									}
+								/>
+							);
+						})}
+					</div>
 				</DivProductLeftSideSC>
 				<DivProductRightSideSC>
 					{selectedProduct && (
